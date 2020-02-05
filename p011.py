@@ -21,4 +21,31 @@ num_string = """
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """
 
-num_string = num_string.replace()
+rows = num_string.strip().split('\n')
+parsed_rows = []
+for row in rows:
+    parsed_rows.append([int(x) for x in row.strip().split(' ')])
+
+max_product = 0
+for row in range(len(parsed_rows)):
+    for start in range(len(parsed_rows[0]) - 3):
+        product1 = 1
+        product2 = 1
+        product3 = 1
+        product4 = 1
+        for i in range(4):
+            product1 *= parsed_rows[row][start + i]
+            product2 *= parsed_rows[start + i][row]
+            if row + 3 < len(parsed_rows[0]):
+                product3 *= parsed_rows[row + i][start + i]
+                product4 *= parsed_rows[row + 3 - i][start + i]
+        if product1 > max_product:
+            max_product = product1
+        if product2 > max_product:
+            max_product = product2
+        if product3 > max_product:
+            max_product = product3
+        if product4 > max_product:
+            max_product = product4
+
+print(max_product)
