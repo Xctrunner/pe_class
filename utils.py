@@ -16,3 +16,18 @@ def gen_primes(upper_limit):
         if bool_list[x]:
             prime_list.append(x + 1)
     return prime_list
+
+def gen_fib(upper_limit):
+    fib_1 = 1
+    fib_2 = 1
+    fib_list = [fib_1, fib_2]
+    fib_result = 0
+    while True:
+        fib_result = fib_1 + fib_2
+        if fib_result > upper_limit:
+            break
+        else:
+            fib_list.append(fib_result)
+            fib_1 = fib_2
+            fib_2 = fib_result
+    return fib_list
